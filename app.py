@@ -275,18 +275,10 @@ elif page == "Recommendations":
             similar = recommender.similar_to_article(article, 8)
             st.dataframe(display_frame(similar[["article_id", "prod_name", "department_name", "units", "score"]].round(3)), hide_index=True, width="stretch")
     with right:
-        st.markdown("**Recommend for a customer**")
-        with connect(str(db_path)) as con:
-            history = con.execute("SELECT customer_key, list(article_id) AS articles FROM app_customer_history GROUP BY 1").df()
-        if history.empty:
-            st.info("No sampled customer history is available.")
-        else:
-            history["label"] = history.customer_key.map(lambda k: f"Customer · {int(k)}")
-            chosen = st.selectbox("Customer", history.label.tolist())
-            row = history.loc[history.label.eq(chosen)].iloc[0]
-            recommendations = recommender.for_customer(row.articles, 8)
-            st.dataframe(display_frame(recommendations[["article_id", "prod_name", "department_name", "units"]]), hide_index=True, width="stretch")
-            st.caption(f"This customer already bought {len(row.articles)} distinct article(s); those are excluded from the suggestions.")
+        st.markdown("**Popular articles**")
+        popular = recommender.catalog.sort_values(["units", "customers"], ascending=False).head(8)
+        st.dataframe(display_frame(popular[["article_id", "prod_name", "department_name", "units", "customers"]]), hide_index=True, width="stretch")
+        st.caption("Customer-level histories are not included in the public deployment snapshot.")
     st.divider()
     report = artifact("recommender_report.json")
     if report:

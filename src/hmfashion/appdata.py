@@ -9,7 +9,7 @@ from pathlib import Path
 import duckdb
 
 APP_TABLES = ["app_overview", "app_monthly", "app_channel", "app_department", "app_colour",
-              "app_age", "app_cohort", "app_repeat_cohort", "app_article", "app_customer_history",
+              "app_age", "app_cohort", "app_repeat_cohort", "app_article",
               "app_department_monthly", "app_complete_months"]
 
 APP_SQL = """
@@ -90,14 +90,6 @@ SELECT a.article_id, a.prod_name, a.department_name, a.product_group_name, a.gar
 FROM fact_transactions t JOIN dim_articles a USING(article_id)
 GROUP BY ALL;
 
--- A small sample of customers with full history, for the interactive recommender demo.
-CREATE OR REPLACE TABLE app_customer_history AS
-WITH picked AS (
-    SELECT customer_key FROM fact_visits GROUP BY 1 HAVING count(*) >= 3
-    ORDER BY hash(customer_key) LIMIT 2000
-)
-SELECT t.customer_key, t.article_id, t.t_dat
-FROM fact_transactions t JOIN picked USING(customer_key);
 """
 
 
