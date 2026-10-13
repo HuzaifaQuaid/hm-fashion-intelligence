@@ -1,0 +1,14 @@
+# Raw H&M competition data must never be committed (non-commercial Kaggle data).
+data/raw/
+data/demo_raw/
+data/*.duckdb
+data/*.duckdb.wal
+artifacts/demo/
+
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Committed: the small deployment snapshot and the evaluation reports.
+!deployment/hm.duckdb

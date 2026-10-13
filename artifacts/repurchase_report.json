@@ -1,0 +1,119 @@
+{
+  "source": "hm",
+  "database_built_at": "2026-10-13 14:18:21.473949-05",
+  "horizon_days": 90,
+  "matured_customers": 1291147,
+  "train_customers": 1032917,
+  "test_customers": 258230,
+  "split_date": "2019-10-14 00:00:00",
+  "overall_repeat_rate": 0.47074268073271286,
+  "test_repeat_rate": 0.32278201603221934,
+  "metrics": {
+    "logistic_regression": {
+      "roc_auc": 0.5553827422774866,
+      "average_precision": 0.35669182145458067,
+      "brier_score": 0.2395451679786541,
+      "top_decile_rate": 0.37838361150911975,
+      "lift_at_top_decile": 1.172257414339188,
+      "prevalence_baseline_ap": 0.32278201603221934
+    }
+  },
+  "calibration": [
+    {
+      "bucket": "1",
+      "predicted": 0.21627064035441,
+      "actual": 0.2791832412021795
+    },
+    {
+      "bucket": "2",
+      "predicted": 0.2855726633414914,
+      "actual": 0.39834654041384454
+    },
+    {
+      "bucket": "3",
+      "predicted": 0.30621475927876574,
+      "actual": 0.4223706875082578
+    },
+    {
+      "bucket": "4",
+      "predicted": 0.3368443879921931,
+      "actual": 0.4455664226237134
+    },
+    {
+      "bucket": "5",
+      "predicted": 0.3860404597416277,
+      "actual": 0.47719478581534935
+    },
+    {
+      "bucket": "6",
+      "predicted": 0.3430200136315757,
+      "actual": 0.5177544819814666
+    },
+    {
+      "bucket": "7",
+      "predicted": 0.33590458488228003,
+      "actual": 0.5540019817359225
+    },
+    {
+      "bucket": "8",
+      "predicted": 0.37238986306462607,
+      "actual": 0.6130697044974271
+    }
+  ],
+  "importance": [
+    {
+      "feature": "first_month",
+      "coefficient": 0.2216957613392627
+    },
+    {
+      "feature": "first_value",
+      "coefficient": 0.1879870703147519
+    },
+    {
+      "feature": "club_member_status_ACTIVE",
+      "coefficient": 0.16017291184443053
+    },
+    {
+      "feature": "club_member_status_PRE-CREATE",
+      "coefficient": -0.15210056360387225
+    },
+    {
+      "feature": "first_units",
+      "coefficient": -0.08866380930982107
+    },
+    {
+      "feature": "fashion_news_frequency_unknown",
+      "coefficient": -0.0731539225672236
+    },
+    {
+      "feature": "fashion_news_frequency_Regularly",
+      "coefficient": 0.07222518803972452
+    },
+    {
+      "feature": "any_online",
+      "coefficient": 0.06475289201925155
+    },
+    {
+      "feature": "fashion_news_frequency_NONE",
+      "coefficient": -0.05451908707076627
+    },
+    {
+      "feature": "club_member_status_unknown",
+      "coefficient": -0.05153252200244696
+    },
+    {
+      "feature": "age",
+      "coefficient": -0.042111648730053665
+    },
+    {
+      "feature": "club_member_status_LEFT CLUB",
+      "coefficient": 0.01054317896602479
+    }
+  ],
+  "limitations": [
+    "A repeat is another purchase visit within the horizon, not a true order, because the dataset has no order id.",
+    "The event is common in this two-year window, so the base rate is high; ranking still needs care.",
+    "No delivery, review or marketing data exists, so those drivers cannot be modelled.",
+    "This is historical H&M data, not a live customer feed."
+  ]
+}

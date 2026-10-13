@@ -1,0 +1,134 @@
+{
+  "source": "hm",
+  "database_built_at": "2026-10-13 14:18:21.473949-05",
+  "horizon_months": 1,
+  "complete_months": 23,
+  "series_start": "2018-10-01",
+  "series_end": "2020-08-01",
+  "next_month": "2020-09",
+  "selected_method": "seasonal_naive",
+  "metrics": {
+    "naive_last_value": {
+      "rmse": 193162.5413751331,
+      "mae": 141931.1,
+      "mape": 0.11436453756263901
+    },
+    "seasonal_naive": {
+      "rmse": 175009.04499568016,
+      "mae": 141391.1,
+      "mape": 0.12636073215380528
+    },
+    "calendar_lag_model": {
+      "rmse": 191930.7664759786,
+      "mae": 144390.5025830882,
+      "mape": 0.11686039424540476
+    }
+  },
+  "forecast": {
+    "point": 1107102.0,
+    "low_80": 927872.2,
+    "high_80": 1286331.8,
+    "low_95": 797660.0500000003,
+    "high_95": 1416543.9499999997
+  },
+  "recent_actuals": [
+    {
+      "month": "2018-10-01",
+      "purchase_events": 1271899.0
+    },
+    {
+      "month": "2018-11-01",
+      "purchase_events": 1158527.0
+    },
+    {
+      "month": "2018-12-01",
+      "purchase_events": 1046956.0
+    },
+    {
+      "month": "2019-01-01",
+      "purchase_events": 1127415.0
+    },
+    {
+      "month": "2019-02-01",
+      "purchase_events": 1036731.0
+    },
+    {
+      "month": "2019-03-01",
+      "purchase_events": 1150798.0
+    },
+    {
+      "month": "2019-04-01",
+      "purchase_events": 1332200.0
+    },
+    {
+      "month": "2019-05-01",
+      "purchase_events": 1413315.0
+    },
+    {
+      "month": "2019-06-01",
+      "purchase_events": 1722723.0
+    },
+    {
+      "month": "2019-07-01",
+      "purchase_events": 1639571.0
+    },
+    {
+      "month": "2019-08-01",
+      "purchase_events": 1138512.0
+    },
+    {
+      "month": "2019-09-01",
+      "purchase_events": 1107102.0
+    },
+    {
+      "month": "2019-10-01",
+      "purchase_events": 1044819.0
+    },
+    {
+      "month": "2019-11-01",
+      "purchase_events": 1084859.0
+    },
+    {
+      "month": "2019-12-01",
+      "purchase_events": 1020274.0
+    },
+    {
+      "month": "2020-01-01",
+      "purchase_events": 969993.0
+    },
+    {
+      "month": "2020-02-01",
+      "purchase_events": 907837.0
+    },
+    {
+      "month": "2020-03-01",
+      "purchase_events": 944409.0
+    },
+    {
+      "month": "2020-04-01",
+      "purchase_events": 1187909.0
+    },
+    {
+      "month": "2020-05-01",
+      "purchase_events": 1240875.0
+    },
+    {
+      "month": "2020-06-01",
+      "purchase_events": 1620318.0
+    },
+    {
+      "month": "2020-07-01",
+      "purchase_events": 1245813.0
+    },
+    {
+      "month": "2020-08-01",
+      "purchase_events": 1130550.0
+    }
+  ],
+  "limitations": [
+    "The target is purchase events, not currency, because H&M anonymised prices.",
+    "Only 23 complete months exist, so long-term seasonality cannot be trusted.",
+    "The forecast ignores promotions, pricing and marketing, which are not in the data.",
+    "Backtest intervals come from past errors and may miss their stated coverage."
+  ]
+}

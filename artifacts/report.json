@@ -1,0 +1,93 @@
+{
+  "source": "hm",
+  "built_at": "2026-10-13 14:18:21.473949-05:00",
+  "purchase_events": 28813419,
+  "customers": 1362281,
+  "repeat_rate": 0.671159621252884,
+  "avg_visits": 6.6654229193536425,
+  "median_age": 32.0,
+  "online_share": 0.3167486996249907,
+  "first_transaction": "2018-09-20 00:00:00",
+  "last_transaction": "2020-09-22 00:00:00",
+  "top_departments": [
+    {
+      "category": "Swimwear",
+      "purchase_events": 2128005,
+      "customers": 416310
+    },
+    {
+      "category": "Trouser",
+      "purchase_events": 1549348,
+      "customers": 479809
+    },
+    {
+      "category": "Blouse",
+      "purchase_events": 1519154,
+      "customers": 464757
+    },
+    {
+      "category": "Knitwear",
+      "purchase_events": 1505655,
+      "customers": 470971
+    },
+    {
+      "category": "Jersey",
+      "purchase_events": 1390422,
+      "customers": 449010
+    },
+    {
+      "category": "Jersey Basic",
+      "purchase_events": 1301964,
+      "customers": 435138
+    },
+    {
+      "category": "Expressive Lingerie",
+      "purchase_events": 1084735,
+      "customers": 295302
+    },
+    {
+      "category": "Jersey fancy",
+      "purchase_events": 1078516,
+      "customers": 412288
+    },
+    {
+      "category": "Basic 1",
+      "purchase_events": 1027967,
+      "customers": 379185
+    },
+    {
+      "category": "Dress",
+      "purchase_events": 1008274,
+      "customers": 336997
+    }
+  ],
+  "quality": [
+    {
+      "check": "transactions: exact duplicate rows removed",
+      "count": 2974905,
+      "severity": "info"
+    },
+    {
+      "check": "customers: missing age",
+      "count": 15861,
+      "severity": "warning"
+    },
+    {
+      "check": "customers: never purchased",
+      "count": 9699,
+      "severity": "warning"
+    },
+    {
+      "check": "transactions: articles never sold",
+      "count": 995,
+      "severity": "warning"
+    }
+  ],
+  "limitations": [
+    "H&M anonymised and scaled the prices, so value here is relative, not a currency amount.",
+    "The dataset has no order id, so a (customer, date) visit is a documented proxy for a basket, not a true order.",
+    "Exact duplicate rows were removed; because there is no quantity column, some may have represented multiple units.",
+    "There is no delivery, review, payment or seller information, so those analyses are not possible.",
+    "This is historical data (2018-2020) and not a live feed."
+  ]
+}

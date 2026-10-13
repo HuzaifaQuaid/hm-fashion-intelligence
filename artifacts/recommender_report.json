@@ -1,0 +1,24 @@
+{
+  "source": "hm",
+  "database_built_at": "2026-10-13 14:18:21.473949-05",
+  "cutoff": "2020-07-28",
+  "k": 10,
+  "evaluable_customers": 5492,
+  "train_catalog_size": 98085,
+  "metrics": {
+    "content_based": {
+      "map_at_k": 0.002447162202260527,
+      "recall_at_k": 0.005308212694282491
+    },
+    "popularity": {
+      "map_at_k": 0.00340641152471347,
+      "recall_at_k": 0.009188870535705607
+    }
+  },
+  "limitations": [
+    "Relevance is defined as an article the customer bought in the held-out 8 weeks, not a rating.",
+    "Only customers active in both periods are evaluated; new customers are a cold-start problem.",
+    "Content similarity uses category attributes only, because there are no user ratings.",
+    "Exact duplicate rows were removed first, so repeat buys of the same article on one day count once."
+  ]
+}
