@@ -1,4 +1,4 @@
-"""HM Data Lab dashboard. Run with: streamlit run app.py"""
+"""H&M Data Lab dashboard. Run with: streamlit run app.py"""
 from pathlib import Path
 import json
 import sys
@@ -17,7 +17,7 @@ from hmfashion.analyst import Analyst
 from hmfashion.recommender import Recommender
 
 ROOT = Path(__file__).parent
-st.set_page_config(page_title="HM Data Lab | Fashion Intelligence", page_icon="◈", layout="wide")
+st.set_page_config(page_title="H&M Data Lab | Fashion Intelligence", page_icon="◈", layout="wide")
 st.markdown(f"<style>{(ROOT / 'assets/dashboard.css').read_text()}</style>", unsafe_allow_html=True)
 
 RED, CORAL, AMBER, ROSE = "#9B2F4A", "#D45465", "#E99A70", "#B8798E"
@@ -122,12 +122,12 @@ def render_analyst_evidence(evidence: dict):
                 st.json(value, expanded=False)
 
 
-st.sidebar.markdown('<div class="brand"><div class="brand-mark">HM</div><div><div class="brand-name">HM DATA LAB</div><div class="brand-sub">Independent fashion intelligence</div></div></div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="brand"><div class="brand-mark">HM</div><div><div class="brand-name">H&amp;M DATA LAB</div><div class="brand-sub">Independent fashion intelligence</div></div></div>', unsafe_allow_html=True)
 candidates = [ROOT / "data/hm.duckdb", ROOT / "deployment/hm.duckdb"]
 default_db = next((path for path in candidates if path.exists()), candidates[0])
 db_path = Path(default_db)
 if not db_path.exists():
-    st.title("HM Data Lab")
+    st.title("H&M Data Lab")
     st.info("Build the analytical database first.")
     st.code("python -m hmfashion.cli ingest --raw-dir data/raw\npython -m hmfashion.cli build", language="bash")
     st.stop()
@@ -138,7 +138,7 @@ metadata = data["metadata"].iloc[0]
 ARTIFACTS = ROOT / "artifacts"
 
 st.markdown(f'''<div class="hero">
-<div class="hero-eyebrow"><span class="status-dot"></span>HM DATA LAB / INDEPENDENT ANALYSIS</div>
+<div class="hero-eyebrow"><span class="status-dot"></span>H&amp;M DATA LAB / INDEPENDENT ANALYSIS</div>
 <h1>A clearer view of fashion retail.</h1>
 <p>What sold, who returned, and what might come next — explored through historical H&amp;M dataset records, with evidence and honest limits at every step.</p>
 <div class="hero-tags"><span>◈ {overview.purchase_events:,.0f} purchase events</span><span>{overview.customers:,.0f} customers</span><span>Online + in-store</span><span>2018–2020</span></div>
