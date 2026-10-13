@@ -109,3 +109,45 @@
 @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 @media (max-width: 700px) { .hero { padding: 24px; border-radius: 18px; } .block-container { padding-left: 1rem; padding-right: 1rem; } }
+
+/* Dark H&M-inspired finishing layer: red identity, charcoal surfaces, readable contrast. */
+[data-testid="stAppViewContainer"] {
+  background: radial-gradient(ellipse at 90% 0%, #6f173328, transparent 36%),
+              radial-gradient(ellipse at 5% 42%, #3b172633, transparent 42%),
+              linear-gradient(145deg, #0d0d12 0%, #141016 52%, #1b1017 100%);
+  color: #f7eef2;
+}
+[data-testid="stHeader"] { background: #0d0d12cc; backdrop-filter: blur(14px); }
+[data-testid="stSidebar"] { background: linear-gradient(165deg, #181219 0%, #21121a 58%, #29131c 100%); border-right: 1px solid #ffffff14; }
+[data-testid="stSidebar"] .stCaption, [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #c8b8c0; }
+[data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] { color: #c8b8c0; }
+[data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] { color: #eee3e8; }
+.brand-mark { width: 54px; height: 54px; border-radius: 50%; background: #e51b3e; color: #fff; font-size: 24px; font-weight: 900; letter-spacing: -2px; box-shadow: 0 8px 28px #e51b3e55; }
+.brand-mark::first-letter { font-weight: 900; }
+.brand-name { color: #fff7fa; font-size: 24px; letter-spacing: 2px; }
+.brand-sub { color: #d9aebb; }
+.hero { border-color: #ffffff18; background: radial-gradient(ellipse at 92% 0%, #ff806633, transparent 36%), linear-gradient(112deg, #42101f 0%, #75152d 48%, #a82847 77%, #d14c5f 100%); box-shadow: 0 18px 50px #00000055; }
+.hero-eyebrow { color: #ffd6df; }
+.hero p { color: #ffe7ec; }
+.section-heading h2 { color: #fff4f7; }
+.section-heading p { color: #c8b8c0; }
+.section-number { color: #ffb1c0; background: linear-gradient(135deg, #401523, #63172b); border-color: #a6334e; }
+[data-testid="stMetric"] { background: linear-gradient(140deg, #21171e 0%, #18141a 62%, #2a151e 100%); border-color: #ffffff18; box-shadow: 0 8px 24px #0000003d; }
+[data-testid="stMetricLabel"] { color: #cdbdc5; }
+[data-testid="stMetricValue"] { color: #fff5f8; }
+[data-testid="stPlotlyChart"] { background: linear-gradient(140deg, #17141b, #21151d 55%, #29151e); border-color: #ffffff18; box-shadow: 0 8px 30px #00000044; }
+[data-testid="stDataFrame"] { border-color: #ffffff1d; }
+[data-testid="stSidebar"] [role="radiogroup"] label:hover { background: #ff55751a; }
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) { background: linear-gradient(90deg, #ff55752b, #a9325012); box-shadow: inset 3px 0 #ff5575; }
+.stButton button, .stDownloadButton button { border-color: #ff557566; background: linear-gradient(120deg, #321521, #52172a); color: #ffe9ee; }
+.stButton button:hover, .stDownloadButton button:hover { background: linear-gradient(120deg, #5a172d, #8b1c3b); border-color: #ff5575; color: #fff; }
+[data-testid="stAlert"] { background: linear-gradient(115deg, #271923, #321a23); border-color: #9a3c54; color: #f7e9ee; }
+[data-testid="stSelectbox"] [data-baseweb="select"] > div, [data-testid="stMultiSelect"] [data-baseweb="select"] > div, [data-testid="stTextInput"] input { background: #18141b; color: #f7eef2; border-color: #68404c; }
+[data-testid="stRadio"] label, [data-testid="stCheckbox"] label { color: #eee3e8 !important; }
+[data-testid="stExpander"] { border-color: #ffffff20; background: #171219; }
+[data-testid="stExpander"] summary { color: #eee3e8; }
+.insight-strip { background: linear-gradient(105deg, #321923, #28171f 72%, #3b1a24); border-color: #83364b; }
+.insight-icon { color: #ff7189; }
+.insight-strip strong { color: #ffb5c2; }
+.insight-strip p { color: #dccbd2; }
+[data-testid="stVerticalBlockBorderWrapper"] { border-color: #ffffff1b !important; background: linear-gradient(145deg, #19131a, #24151e); }

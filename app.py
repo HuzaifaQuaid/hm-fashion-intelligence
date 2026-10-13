@@ -73,13 +73,13 @@ def display_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def chart(fig):
-    fig.update_layout(template="plotly_white", paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(255,255,255,0.35)",
-                      margin=dict(l=16, r=16, t=55, b=20), font=dict(color="#624954", size=12),
-                      title_font=dict(size=17, color="#422631"), colorway=[RED, CORAL, AMBER, ROSE],
-                      hoverlabel=dict(bgcolor="#fff9f5", bordercolor="#d8b6bd", font_color="#34212b"),
-                      legend=dict(orientation="h", y=-.2, font=dict(color="#49343e")))
-    fig.update_xaxes(gridcolor="rgba(111,65,79,0.10)", zerolinecolor="rgba(111,65,79,0.18)", tickfont=dict(color="#624954"), title_font=dict(color="#624954"), showline=True, linecolor="#ddc6ca")
-    fig.update_yaxes(gridcolor="rgba(111,65,79,0.10)", zerolinecolor="rgba(111,65,79,0.18)", tickfont=dict(color="#624954"), title_font=dict(color="#624954"), showline=True, linecolor="#ddc6ca")
+    fig.update_layout(template="plotly_dark", paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(18,18,25,0.74)",
+                      margin=dict(l=16, r=16, t=55, b=20), font=dict(color="#F4EAF0", size=12),
+                      title_font=dict(size=17, color="#FFF7FA"), colorway=["#FF5575", "#FF8A7A", "#F4B860", "#D991B0"],
+                      hoverlabel=dict(bgcolor="#241A22", bordercolor="#B63A56", font_color="#FFF7FA"),
+                      legend=dict(orientation="h", y=-.2, font=dict(color="#F4EAF0")))
+    fig.update_xaxes(gridcolor="rgba(255,255,255,0.09)", zerolinecolor="rgba(255,255,255,0.14)", tickfont=dict(color="#E6D9E0"), title_font=dict(color="#F4EAF0"), showline=True, linecolor="#5B4650")
+    fig.update_yaxes(gridcolor="rgba(255,255,255,0.09)", zerolinecolor="rgba(255,255,255,0.14)", tickfont=dict(color="#E6D9E0"), title_font=dict(color="#F4EAF0"), showline=True, linecolor="#5B4650")
     for index, trace in enumerate(fig.data):
         color = [RED, CORAL, AMBER, ROSE][index % 4]
         for attr in ("x", "y", "labels"):
@@ -122,7 +122,7 @@ def render_analyst_evidence(evidence: dict):
                 st.json(value, expanded=False)
 
 
-st.sidebar.markdown('<div class="brand"><div class="brand-mark">◈</div><div><div class="brand-name">H&M</div><div class="brand-sub">Fashion intelligence</div></div></div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="brand"><div class="brand-mark">H&amp;M</div><div><div class="brand-name">H&amp;M</div><div class="brand-sub">Fashion intelligence</div></div></div>', unsafe_allow_html=True)
 candidates = [ROOT / "data/hm.duckdb", ROOT / "deployment/hm.duckdb"]
 default_db = next((path for path in candidates if path.exists()), candidates[0])
 db_path = Path(default_db)
