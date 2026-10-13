@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 
 from hmfashion.analytics import generate_report
+from hmfashion.appdata import build_app_tables, build_deployment
 from hmfashion.demo import generate_demo
 from hmfashion.forecasting import train_forecast
 from hmfashion.pipeline import build_database
@@ -26,6 +27,8 @@ def build(args):
     print("repurchase:", train_repurchase(db, artifacts)["metrics"]["logistic_regression"]["roc_auc"])
     print("recommender:", train_recommender(db, artifacts)["metrics"])
     print("forecast:", train_forecast(db, artifacts)["selected_method"])
+    build_app_tables(db)
+    print("Dashboard tables refreshed.")
 
 
 def report(args):

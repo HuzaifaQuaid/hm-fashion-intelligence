@@ -42,6 +42,7 @@ def _brl(value):  # relative scaled value helper
 class Analyst:
     def __init__(self, db_path: Path, artifact_dir: Path | None = None):
         self.con = duckdb.connect(str(db_path), read_only=True)
+        self.compact = bool(self.con.execute("SELECT count(*) FROM information_schema.tables WHERE table_name='app_overview'").fetchone()[0])
         self.metadata = self.con.execute(
             "SELECT source, built_at::VARCHAR AS built_at, first_transaction, last_transaction FROM metadata"
         ).df().iloc[0].to_dict()
@@ -50,11 +51,11 @@ class Analyst:
 
     # ---- approved tools -------------------------------------------------
     def _sales_overview(self, params: dict) -> dict:
-        row = self.con.execute("""
+        row = self.con.execute("SELECT purchase_events AS events, customers, scaled_value AS value FROM app_overview" if self.compact else """
             SELECT count(*) AS events, count(DISTINCT customer_key) AS customers, sum(price) AS value
             FROM fact_transactions
         """).df().iloc[0]
-        top = category_summary(self.con, "department_name", 5)
+        top = self.con.execute("SELECT * FROM app_department ORDER BY purchase_events DESC LIMIT 5").df() if self.compact else category_summary(self.con, "department_name", 5)
         leader = top.iloc[0]
         return {
             "answer": f"This dataset holds {row.events:,.0f} purchase events from {row.customers:,.0f} customers. "
@@ -66,7 +67,7 @@ class Analyst:
         }
 
     def _channel(self, params: dict) -> dict:
-        table = channel_split(self.con)
+        table = self.con.execute("SELECT * FROM app_channel").df() if self.compact else channel_split(self.con)
         online = float(table.loc[table.channel.eq("Online"), "purchase_events"].sum())
         total = float(table.purchase_events.sum())
         return {
@@ -77,13 +78,13 @@ class Analyst:
         }
 
     def _category_movers(self, params: dict) -> dict:
-        series = self.con.execute("""
+        series = self.con.execute("SELECT month, category, events FROM app_department_monthly" if self.compact else """
             SELECT date_trunc('month', t_dat) AS month, a.department_name AS category, count(*) AS events
             FROM fact_transactions t JOIN dim_articles a USING(article_id)
             WHERE a.department_name IS NOT NULL GROUP BY 1, 2
         """).df()
         # Only complete months, so a partial boundary month is not read as a decline.
-        complete = set(forecasting.monthly_series(self.con).month)
+        complete = set(self.con.execute("SELECT month FROM app_complete_months").df().month) if self.compact else set(forecasting.monthly_series(self.con).month)
         series = series.loc[series.month.isin(complete)]
         months = sorted(series.month.unique())
         if len(months) < 5:
@@ -109,7 +110,7 @@ class Analyst:
         }
 
     def _customers(self, params: dict) -> dict:
-        overview = customer_overview(self.con)
+        overview = self.con.execute("SELECT *, visits * 1.0 / customers AS avg_visits FROM app_overview").df().iloc[0].to_dict() if self.compact else customer_overview(self.con)
         return {
             "answer": f"There are {overview['customers']:,.0f} customers, {overview['repeat_customers']:,.0f} of whom returned "
                       f"({overview['repeat_customers']/overview['customers']:.1%}). Median age is {overview['median_age']:.0f}.",
@@ -136,7 +137,7 @@ class Analyst:
 
     def _recommend(self, params: dict) -> dict:
         report = load_recommender_report(self.artifact_dir) if self.artifact_dir else None
-        catalog = self.con.execute("""
+        catalog = self.con.execute("SELECT article_id, prod_name, department_name, units FROM app_article ORDER BY units DESC LIMIT 5" if self.compact else """
             SELECT a.article_id, a.prod_name, a.department_name, count(*) AS units
             FROM fact_transactions t JOIN dim_articles a USING(article_id)
             GROUP BY 1, 2, 3 ORDER BY units DESC LIMIT 5

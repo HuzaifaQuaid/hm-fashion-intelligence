@@ -9,9 +9,20 @@ from pathlib import Path
 import duckdb
 
 APP_TABLES = ["app_overview", "app_monthly", "app_channel", "app_department", "app_colour",
-              "app_age", "app_cohort", "app_repeat_cohort", "app_article", "app_customer_history"]
+              "app_age", "app_cohort", "app_repeat_cohort", "app_article", "app_customer_history",
+              "app_department_monthly", "app_complete_months"]
 
 APP_SQL = """
+CREATE OR REPLACE TABLE app_complete_months AS
+SELECT date_trunc('month', t_dat) AS month
+FROM fact_transactions GROUP BY 1
+HAVING count(DISTINCT t_dat) >= 0.9 * day(last_day(month));
+
+CREATE OR REPLACE TABLE app_department_monthly AS
+SELECT date_trunc('month', t.t_dat) AS month, a.department_name AS category, count(*) AS events
+FROM fact_transactions t JOIN dim_articles a USING(article_id)
+WHERE a.department_name IS NOT NULL GROUP BY 1, 2;
+
 CREATE OR REPLACE TABLE app_overview AS
 SELECT count(*) AS purchase_events,
        count(DISTINCT customer_key) AS customers,

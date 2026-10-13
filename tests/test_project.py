@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).parents[1] / "src"))
 
 from hmfashion.analytics import cohort_retention, customer_overview, generate_report  # noqa: E402
 from hmfashion.analyst import Analyst  # noqa: E402
-from hmfashion.appdata import build_app_tables  # noqa: E402
+from hmfashion.appdata import build_app_tables, build_deployment  # noqa: E402
 from hmfashion.demo import generate_demo  # noqa: E402
 from hmfashion.forecasting import monthly_series, train_forecast  # noqa: E402
 from hmfashion.pipeline import build_database  # noqa: E402
@@ -87,6 +87,16 @@ class AnalyticsTests(unittest.TestCase):
         with duckdb.connect(str(self.db), read_only=True) as con:
             self.assertEqual(con.execute("SELECT count(*) FROM app_overview").fetchone()[0], 1)
             self.assertGreater(con.execute("SELECT count(*) FROM app_article").fetchone()[0], 0)
+
+    def test_compact_analyst(self):
+        build_app_tables(self.db)
+        compact = self.db.parent / "compact.duckdb"
+        build_deployment(self.db, compact)
+        analyst = Analyst(compact, self.artifacts)
+        for question in analyst.suggestions():
+            result = analyst.ask(question)
+            self.assertTrue(result["answer"])
+        analyst.con.close()
 
     def test_forecast_backtest(self):
         report = train_forecast(self.db, self.artifacts)
