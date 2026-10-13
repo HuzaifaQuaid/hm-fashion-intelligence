@@ -150,4 +150,7 @@
 .insight-icon { color: #ff7189; }
 .insight-strip strong { color: #ffb5c2; }
 .insight-strip p { color: #dccbd2; }
+.analyst-question { color: #d8c8d0; }
+.analyst-question span { color: #ff7189; }
+.analyst-question strong { color: #fff1f5; }
 [data-testid="stVerticalBlockBorderWrapper"] { border-color: #ffffff1b !important; background: linear-gradient(145deg, #19131a, #24151e); }
