@@ -1,3 +1,3 @@
-"""H&M Fashion Intelligence: validated ingestion, analysis and modelling."""
+"""HM Data Lab: independent fashion retail analytics."""
 
 __version__ = "0.1.0"

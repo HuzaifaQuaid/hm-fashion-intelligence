@@ -1,4 +1,6 @@
-# H&M Fashion Intelligence
+# HM Data Lab
+
+> **Independent educational project.** HM Data Lab is not affiliated with, endorsed by, sponsored by or officially connected to H&M Group. It uses the publicly available H&M Personalized Fashion Recommendations dataset for historical analysis.
 
 An evidence-first analytics app built on the real **H&M Personalized Fashion Recommendations** dataset: 28.8 million purchase events, 1.36 million customers and 104,547 articles from September 2018 to September 2020.
 

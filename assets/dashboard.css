@@ -122,7 +122,7 @@
 [data-testid="stSidebar"] .stCaption, [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #c8b8c0; }
 [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] { color: #c8b8c0; }
 [data-testid="stAppViewContainer"] [data-testid="stMarkdownContainer"] { color: #eee3e8; }
-.brand-mark { width: 54px; height: 54px; border-radius: 50%; background: #e51b3e; color: #fff; font-size: 24px; font-weight: 900; letter-spacing: -2px; box-shadow: 0 8px 28px #e51b3e55; }
+.brand-mark { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: #e51b3e; color: #fff; font-size: 23px; font-weight: 900; letter-spacing: -2px; box-shadow: 0 8px 28px #e51b3e55; }
 .brand-mark::first-letter { font-weight: 900; }
 .brand-name { color: #fff7fa; font-size: 24px; letter-spacing: 2px; }
 .brand-sub { color: #d9aebb; }

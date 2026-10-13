@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hmfashion"
 version = "0.1.0"
-description = "H&M fashion retail intelligence: validated ingestion, analysis and modelling"
+description = "HM Data Lab: independent fashion retail analytics using historical H&M dataset data"
 requires-python = ">=3.10"
 dependencies = [
     "duckdb>=1.0,<2",
